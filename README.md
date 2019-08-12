@@ -6,7 +6,7 @@ Dersom man ønsker å forsøke seg på en løsning fra scratch er det bare å fo
 
 I tillegg til master er det følgende brancher i dette repoet: 
 
-* ios: inneholder litt nativekode for biometrivalidering, men ingen kommunikasjon mellom React Native og Native
-* lf_ios: inneholder komplett løsningsforslag for iOS
-* android: inneholder litt nativekode for biometrivalidering, men ingen kommunikasjon mellom React Native og Native
-* lf_androird: inneholder komplett løsningsforslag for Android
+* [ios](https://github.com/forsen/rnworkshop/tree/ios): inneholder litt nativekode for biometrivalidering, men ingen kommunikasjon mellom React Native og Native
+* [lf_ios](https://github.com/forsen/rnworkshop/tree/lf_ios): inneholder komplett løsningsforslag for iOS
+* [android](https://github.com/forsen/rnworkshop/tree/android): inneholder litt nativekode for biometrivalidering, men ingen kommunikasjon mellom React Native og Native
+* [lf_android](https://github.com/forsen/rnworkshop/tree/lf_android): inneholder komplett løsningsforslag for Android
