@@ -9,9 +9,11 @@
 import Foundation
 import LocalAuthentication
 
+@objc(Biometrics)
 class Biometrics: NSObject {
   
-  func isSupported() -> Void {
+  @objc
+  func isSupported(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
     let context = LAContext()
     var authError: NSError?
     
@@ -46,7 +48,7 @@ class Biometrics: NSObject {
   }
   
   @objc
-  func authenticate() -> Void {
+  func authenticate(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
     let context = LAContext()
     
     var authError: NSError?
@@ -54,8 +56,7 @@ class Biometrics: NSObject {
     if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
       context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "For moro skyld") { success, evaluateError in
         if success {
-          // successfully validated biometrics, should we let react native know?
-          print("Successfully validated")
+          resolve("Successfully validated")
         }
         
         guard let error = evaluateError as NSError? else {
@@ -98,14 +99,17 @@ class Biometrics: NSObject {
           break;
         }
         
-        print(errorReason!)
-        
-        // Let react native know the error reason
+        reject("AuthenticationFailed", errorReason, error)
         return;
       }
     } else {
-      print("authentication failed")
+      reject("AuthenticationFailed", "Unknown Error", authError)
     }
+  }
+  
+  @objc
+  static func requiresMainQueueSetup() -> Bool {
+    return true
   }
 }
 
